@@ -3,9 +3,19 @@ package utilidades;
 import java.util.HashMap;
 import java.util.Map;
 
+import excepciones.CodigoPostalException;
+
 public class ComprobarCodigoPostal {
 
-    public void verificarCodigoPostal(String codigoPostal, String provincia){
+    public static void verificarCodigoPostal(String codigoPostal, String provincia) throws CodigoPostalException{
+
+        if (codigoPostal.length() != 5) {
+            throw new CodigoPostalException();
+        }
+
+        String codigoProvincia = codigoPostal.substring(0, 2);
+
+
 
         Map<String, String> provincias = new HashMap<>();
         provincias.put("01", "Alava");
@@ -59,6 +69,10 @@ public class ComprobarCodigoPostal {
         provincias.put("50", "Zaragoza");
         provincias.put("51", "Ceuta");
         provincias.put("52", "Melilla");
+
+        if (!provincias.get(codigoProvincia).equalsIgnoreCase(provincia) ) {
+            throw new CodigoPostalException();
+        }
         
     }
 

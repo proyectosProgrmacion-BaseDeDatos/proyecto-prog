@@ -1,7 +1,9 @@
 package modelo;
 
 import excepciones.CampoVacioException;
+import excepciones.CodigoPostalException;
 import excepciones.DniExceptions;
+import utilidades.ComprobarCodigoPostal;
 import utilidades.ComprobarDni;
 import utilidades.GenerarID_usuario;
 
@@ -20,7 +22,7 @@ public class Usuario {
 
 
     public Usuario(String usuario, String password, String dni, String nombre, String apellidos, String direccion,
-            String codigoPostal, String provincia, String localidad) throws CampoVacioException, DniExceptions {
+            String codigoPostal, String provincia, String localidad) throws CampoVacioException, DniExceptions, CodigoPostalException {
 
         this.setUsuario(usuario);
         this.setPassword(password);
@@ -28,9 +30,9 @@ public class Usuario {
         this.setNombre(nombre);
         this.setApellidos(apellidos);
         this.setDireccion(direccion);
-        this.setCodigoPostal(codigoPostal);
         this.setProvincia(provincia);
         this.setLocalidad(localidad);
+        this.setCodigoPostal(codigoPostal);
         this.setId_usuario(id_usuario);
     }
 
@@ -106,12 +108,7 @@ public class Usuario {
         }
         this.direccion = direccion;
     }
-    public void setCodigoPostal(String codigoPostal) throws CampoVacioException {
-        if (codigoPostal == null || codigoPostal.length() == 0) {
-            throw new CampoVacioException();
-        }
-        this.codigoPostal = codigoPostal;
-    }
+    
     public void setProvincia(String provincia) throws CampoVacioException {
         if (provincia == null || provincia.length() == 0) {
             throw new CampoVacioException();
@@ -123,6 +120,16 @@ public class Usuario {
             throw new CampoVacioException();
         }
         this.localidad = localidad;
+    }
+
+    public void setCodigoPostal(String codigoPostal) throws CampoVacioException, CodigoPostalException {
+        if (codigoPostal == null || codigoPostal.length() == 0) {
+            throw new CampoVacioException();
+        }
+
+        ComprobarCodigoPostal.verificarCodigoPostal(codigoPostal, getProvincia());
+
+        this.codigoPostal = codigoPostal;
     }
 
     public void setId_usuario(String id_usuario) {

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import excepciones.CampoVacioException;
 import excepciones.CodigoDeBarraException;
+import excepciones.CodigoPostalException;
 import excepciones.DniExceptions;
 import modelo.Juego;
 import modelo.Usuario;
@@ -28,7 +29,7 @@ public class Main {
             Usuario u1 = new Usuario("Zzelen", "123456789Lop", "12345678Z", "cristian", "Lopez Gonzalez", "callejon negro 17", "11540", "cadiz", "Sanlucar de Barrameda");
 
             System.out.println(u1);
-        } catch (CodigoDeBarraException | CampoVacioException | DniExceptions e) {
+        } catch (CodigoDeBarraException | CampoVacioException | DniExceptions | CodigoPostalException e) {
             
             e.printStackTrace();
         }
