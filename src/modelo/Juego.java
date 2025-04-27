@@ -4,16 +4,17 @@ import java.time.LocalDate;
 
 import excepciones.CampoVacioException;
 import excepciones.CodigoDeBarraException;
-import utilidades.ComprobarCodigoBarras;
+
 
 public class Juego {
-    private String codigoBarra,tituloJuego,genero,modosDeJuego,compatibilidad,precio,tamanio,empresaDesarrolladora;
+    private String ID_juego,tituloJuego,genero,modosDeJuego,compatibilidad,precio,tamanio,empresaDesarrolladora;
     private LocalDate fechadeDeLanzamiento;
     
-    public Juego(String codigoBarra, String tituloJuego, String genero, String modosDeJuego, String compatibilidad,
-            String precio, String tamanio, String empresaDesarrolladora, LocalDate fechadeDeLanzamiento) throws CampoVacioException, CodigoDeBarraException {
+    
+    public Juego(String ID_juego, String tituloJuego, String genero, String modosDeJuego, String compatibilidad,
+            String precio, String tamanio, String empresaDesarrolladora, LocalDate fechadeDeLanzamiento) throws CampoVacioException {
         
-        this.setCodigoBarra(codigoBarra);
+        this.setID_juego(modosDeJuego);
         this.setTituloJuego(tituloJuego);
         this.setGenero(genero);
         this.setModosDeJuego(modosDeJuego);
@@ -26,8 +27,9 @@ public class Juego {
 
     
     //! ================  GET  ================
-    public String getCodigoBarra() {
-        return codigoBarra;
+    
+    public String getID_juego() {
+        return ID_juego;
     }
 
     public String getTituloJuego() {
@@ -65,16 +67,7 @@ public class Juego {
 
     //? ================  SET  ================
 
-    public void setCodigoBarra(String codigoBarra) throws CampoVacioException, CodigoDeBarraException {
-
-        if (codigoBarra == null || codigoBarra.length() == 0) {
-            throw new CampoVacioException();
-        }
-
-        ComprobarCodigoBarras.verificarCodigoBarras(codigoBarra);
-
-        this.codigoBarra = codigoBarra;
-    }
+    
 
     public void setTituloJuego(String tituloJuego) throws CampoVacioException {
         if (tituloJuego == null || tituloJuego.length() == 0) {
@@ -132,13 +125,26 @@ public class Juego {
         this.fechadeDeLanzamiento = fechadeDeLanzamiento;
     }
 
+    public void setID_juego(String iD_juego) {
+        ID_juego = iD_juego;
+    }
+
+
     @Override
     public String toString() {
-        return "Juego [codigoBarra=" + codigoBarra + ", tituloJuego=" + tituloJuego + ", genero=" + genero
-                + ", modosDeJuego=" + modosDeJuego + ", compatibilidad=" + compatibilidad + ", precio=" + precio
-                + ", tamanio=" + tamanio + ", empresaDesarrolladora=" + empresaDesarrolladora
-                + ", fechadeDeLanzamiento=" + fechadeDeLanzamiento + "]";
+        return "Juego [ID_juego=" + ID_juego + ", tituloJuego=" + tituloJuego + ", genero=" + genero + ", modosDeJuego="
+                + modosDeJuego + ", compatibilidad=" + compatibilidad + ", precio=" + precio + ", tamanio=" + tamanio
+                + ", empresaDesarrolladora=" + empresaDesarrolladora + ", fechadeDeLanzamiento=" + fechadeDeLanzamiento
+                + "]";
     }
+
+    
+
+
+    
+
+
+    
    
     
     

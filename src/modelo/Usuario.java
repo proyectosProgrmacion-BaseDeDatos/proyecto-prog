@@ -18,11 +18,12 @@ public class Usuario {
     private String codigoPostal;
     private String provincia;
     private String localidad;
+    private CuentaBancaria cuenta;
 
 
 
     public Usuario(String usuario, String password, String dni, String nombre, String apellidos, String direccion,
-            String codigoPostal, String provincia, String localidad) throws CampoVacioException, DniExceptions, CodigoPostalException {
+            String codigoPostal, String provincia, String localidad, CuentaBancaria cuenta) throws CampoVacioException, DniExceptions, CodigoPostalException {
 
         this.setUsuario(usuario);
         this.setPassword(password);
@@ -34,9 +35,12 @@ public class Usuario {
         this.setLocalidad(localidad);
         this.setCodigoPostal(codigoPostal);
         this.setId_usuario(id_usuario);
+        this.setCuenta(cuenta);
+        
     }
 
     //! ================  GET  ================
+
 
     public String getUsuario() {
         return usuario;
@@ -65,16 +69,17 @@ public class Usuario {
     public String getLocalidad() {
         return localidad;
     }
+    public CuentaBancaria getCuenta() {
+        return cuenta;
+    }
 
     //? ================  SET  ================
 
    
-    public void setUsuario(String usuario) throws CampoVacioException {
-        if (usuario == null || usuario.length() == 0) {
-            throw new CampoVacioException();
-        }
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
     public void setPassword(String password) throws CampoVacioException {
         if (password == null || password.length() == 0) {
             throw new CampoVacioException();
@@ -136,12 +141,29 @@ public class Usuario {
         this.id_usuario = GenerarID_usuario.Generar_ID_usuario(getNombre(), getApellidos(), getDni());
     }
 
+    public void setCuenta(CuentaBancaria cuenta) {
+        this.cuenta = cuenta;
+    }
+
     @Override
     public String toString() {
         return "Usuario [id_usuario=" + id_usuario + ", usuario=" + usuario + ", password=" + password + ", dni=" + dni
                 + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion + ", codigoPostal="
-                + codigoPostal + ", provincia=" + provincia + ", localidad=" + localidad + "]";
+                + codigoPostal + ", provincia=" + provincia + ", localidad=" + localidad + ", cuenta=" + cuenta + "]";
     }
+
+    
+
+    
+
+
+
+   
+
+    
+
+
+    
 
     
 
