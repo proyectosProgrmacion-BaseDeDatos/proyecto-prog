@@ -3,8 +3,7 @@ package utilidades;
 import excepciones.CuentaBancariaException;
 
 public class ComprobarCuentaBancaria {
-
-    public static void verificarCeuntaBancaria(String numeroCuenta) throws CuentaBancariaException {
+    public static void verificarCuentaBancaria(String numeroCuenta) throws CuentaBancariaException {
 
         if (numeroCuenta.length() != 20) {
             throw new CuentaBancariaException();
@@ -44,11 +43,10 @@ public class ComprobarCuentaBancaria {
             multiEntidadSucursal += num * arrayNumeros2[i];
 
         }
-        
-        int digitoControl1 = 11-(multiEntidadSucursal%11);
-        int digitoControl2 = 11-(multiNumCuenta%11);
-        
-        
+
+        int digitoControl1 = 11 - (multiEntidadSucursal % 11);
+        int digitoControl2 = 11 - (multiNumCuenta % 11);
+
         if (digitoControl1 == 10) {
             digitoControl1 = 1;
         }
@@ -65,22 +63,13 @@ public class ComprobarCuentaBancaria {
             digitoControl2 = 0;
         }
         // comprobaciones
-        String numStr1 = digitoControl1+"" ;
-        String numStr2 = digitoControl2 +"";
+        String numStr1 = digitoControl1 + "";
+        String numStr2 = digitoControl2 + "";
         String resultado = numStr1 + numStr2;
-        
 
-        if (!resultado.equals(numeroControlDc) ) {
+        if (!resultado.equals(numeroControlDc)) {
             throw new CuentaBancariaException();
         }
 
-        
-
-
-        
-
-        
-
     }
-
 }

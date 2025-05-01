@@ -1,30 +1,47 @@
 package modelo;
 
-import excepciones.CampoVacioException;
+import excepciones.CamposvaciosException;
 import excepciones.CuentaBancariaException;
+import excepciones.DineroNegativoException;
 import utilidades.ComprobarCuentaBancaria;
-import utilidades.Generar_ID_Cuenta;
 
 public class CuentaBancaria {
-    private String id_cuentaBancaria;
-    private String titular;
+
+    private int idCuenta;
+    private int idUsuario; // Clave foránea
+    private String nombreTitular;
     private String numeroCuenta;
     private double dinero;
 
-    public CuentaBancaria(String titular, String numeroCuenta, double dinero) throws CuentaBancariaException, CampoVacioException {
+    public CuentaBancaria(int idCuenta, int idUsuario, String nombreTitular, String numeroCuenta, double dinero) throws CuentaBancariaException, DineroNegativoException, CamposvaciosException {
         
-        this.setTitular(titular);
+        this.setIdCuenta(idCuenta);
+        this.setIdUsuario(idUsuario);
+        this.setNombreTitular(nombreTitular);
         this.setNumeroCuenta(numeroCuenta);
         this.setDinero(dinero);
-        this.setId_cuentaBancaria(id_cuentaBancaria);
-        
-    } 
-    public String getId_cuentaBancaria() {
-        return id_cuentaBancaria;
     }
+
+    public CuentaBancaria(int idUsuario, String nombreTitular, String numeroCuenta, double dinero) throws CamposvaciosException, CuentaBancariaException, DineroNegativoException {
+        this.setIdUsuario(idUsuario);
+        this.setNombreTitular(nombreTitular);
+        this.setNumeroCuenta(numeroCuenta);
+        this.setDinero(dinero);
+    }
+
     
-    public String getTitular() {
-        return titular;
+
+    //? ========= GET =========
+    public int getIdCuenta() {
+        return idCuenta;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public String getNombreTitular() {
+        return nombreTitular;
     }
 
     public String getNumeroCuenta() {
@@ -32,45 +49,53 @@ public class CuentaBancaria {
     }
 
     public double getDinero() {
-
         return dinero;
     }
 
-    public void setTitular(String titular) throws CampoVacioException {
-        if (titular == null || titular.length() == 0) {
-            throw new CampoVacioException();
-        }
-        this.titular = titular;
+    //! ========= SET =========
+
+    public void setIdCuenta(int idCuenta) {
+        this.idCuenta = idCuenta;
     }
 
-    public void setNumeroCuenta(String numeroCuenta) throws CuentaBancariaException, CampoVacioException {
+    public void setIdUsuario(int idUsuario) {
+        
+        this.idUsuario = idUsuario;
+    }
 
+    public void setNombreTitular(String nombreTitular) throws CamposvaciosException {
+        if (nombreTitular == null || nombreTitular.length() == 0) {
+            throw new CamposvaciosException();
+        }
+        this.nombreTitular = nombreTitular;
+    }
+
+    public void setNumeroCuenta(String numeroCuenta) throws CuentaBancariaException, CamposvaciosException {
+        
         if (numeroCuenta == null || numeroCuenta.length() == 0) {
-            throw new CampoVacioException();
+            throw new CamposvaciosException();
         }
 
-        ComprobarCuentaBancaria.verificarCeuntaBancaria(numeroCuenta);
+        ComprobarCuentaBancaria.verificarCuentaBancaria(numeroCuenta);
 
         this.numeroCuenta = numeroCuenta;
-
-        
     }
 
-    public void setId_cuentaBancaria(String id_cuentaBancaria) {
-        this.id_cuentaBancaria = Generar_ID_Cuenta.crear_ID_cuenta(getTitular(), getNumeroCuenta());
-    }
+    public void setDinero(double dinero) throws DineroNegativoException {
 
-    public void setDinero(double dinero) {
+        if (dinero < 0) {
+            throw new DineroNegativoException();
+        }
         this.dinero = dinero;
     }
+
     @Override
     public String toString() {
-        return "CuentaBancaria [id_cuentaBancaria=" + id_cuentaBancaria + ", titular=" + titular + ", numeroCuenta="
-                + numeroCuenta + ", dinero=" + dinero + "]";
+        return "CuentaBancaria [idCuenta=" + idCuenta + ", idUsuario=" + idUsuario + ", nombreTitular=" + nombreTitular
+                + ", numeroCuenta=" + numeroCuenta + ", dinero=" + dinero + "]";
     }
-
     
-
+    
     
 
 }

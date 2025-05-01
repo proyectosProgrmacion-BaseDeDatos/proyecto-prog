@@ -1,155 +1,111 @@
 package modelo;
-
 import java.time.LocalDate;
 
-import excepciones.CampoVacioException;
-import excepciones.CodigoDeBarraException;
-
+import excepciones.CamposvaciosException;
+import excepciones.PrecioJuegoException;
 
 public class Juego {
-    private String ID_juego,tituloJuego,genero,modosDeJuego,compatibilidad,precio,tamanio,empresaDesarrolladora;
-    private LocalDate fechadeDeLanzamiento;
-    
-    
-    public Juego(String ID_juego, String tituloJuego, String genero, String modosDeJuego, String compatibilidad,
-            String precio, String tamanio, String empresaDesarrolladora, LocalDate fechadeDeLanzamiento) throws CampoVacioException {
+
+    private int idJuego;
+    private String nombre;
+    private String genero;
+    private String empresaDesarrolladora;
+    private LocalDate fechaDeLanzamiento;
+    private double precio;
+
+    public Juego(int idJuego, String nombre, String genero, String empresaDesarrolladora, LocalDate fechaDeLanzamiento, double precio) throws CamposvaciosException, PrecioJuegoException {
         
-        this.setID_juego(modosDeJuego);
-        this.setTituloJuego(tituloJuego);
+        this.setIdJuego(idJuego);
+        this.setNombre(nombre);
         this.setGenero(genero);
-        this.setModosDeJuego(modosDeJuego);
-        this.setCompatibilidad(compatibilidad);
-        this.setPrecio(precio);
-        this.setTamanio(tamanio);
         this.setEmpresaDesarrolladora(empresaDesarrolladora);
-        this.setFechadeDeLanzamiento(fechadeDeLanzamiento);
+        this.setFechaDeLanzamiento(fechaDeLanzamiento);
+        this.setPrecio(precio);
+
     }
 
-    
-    //! ================  GET  ================
-    
-    public String getID_juego() {
-        return ID_juego;
+    public Juego(String nombre, String genero, String empresaDesarrolladora, LocalDate fechaDeLanzamiento, double precio) throws CamposvaciosException, PrecioJuegoException {
+        
+        this.setIdJuego(idJuego);
+        this.setNombre(nombre);
+        this.setGenero(genero);
+        this.setEmpresaDesarrolladora(empresaDesarrolladora);
+        this.setFechaDeLanzamiento(fechaDeLanzamiento);
+        this.setPrecio(precio);
+
     }
 
-    public String getTituloJuego() {
-        return tituloJuego;
+    //? ========= GET =========
+
+    public int getIdJuego() {
+        return idJuego;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public String getGenero() {
         return genero;
     }
 
-    public String getModosDeJuego() {
-        return modosDeJuego;
-    }
-
-    public String getCompatibilidad() {
-        return compatibilidad;
-    }
-
-    public String getPrecio() {
-        return precio;
-    }
-
-    public String getTamanio() {
-        return tamanio;
-    }
-
     public String getEmpresaDesarrolladora() {
         return empresaDesarrolladora;
     }
 
-    public LocalDate getFechadeDeLanzamiento() {
-        return fechadeDeLanzamiento;
+    public LocalDate getFechaDeLanzamiento() {
+        return fechaDeLanzamiento;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
 
-    //? ================  SET  ================
+    //! ========= SET =========
 
-    
-
-    public void setTituloJuego(String tituloJuego) throws CampoVacioException {
-        if (tituloJuego == null || tituloJuego.length() == 0) {
-            throw new CampoVacioException();
+    public void setIdJuego(int idJuego) {
+        this.idJuego = idJuego;
+    }
+    public void setNombre(String nombre) throws CamposvaciosException {
+        if (nombre == null || nombre.length() == 0) {
+            throw new CamposvaciosException();
         }
-        this.tituloJuego = tituloJuego;
+        this.nombre = nombre;
     }
+    public void setGenero(String genero) throws CamposvaciosException {
 
-    public void setGenero(String genero) throws CampoVacioException {
         if (genero == null || genero.length() == 0) {
-            throw new CampoVacioException();
+            throw new CamposvaciosException();
         }
         this.genero = genero;
     }
-
-    public void setModosDeJuego(String modosDeJuego) throws CampoVacioException {
-        if (modosDeJuego == null || modosDeJuego.length() == 0) {
-            throw new CampoVacioException();
-        }
-        this.modosDeJuego = modosDeJuego;
-    }
-
-    public void setCompatibilidad(String compatibilidad) throws CampoVacioException {
-        if (compatibilidad == null || compatibilidad.length() == 0) {
-            throw new CampoVacioException();
-        }
-        this.compatibilidad = compatibilidad;
-    }
-
-    public void setPrecio(String precio) throws CampoVacioException {
-        if (precio == null || precio.length() == 0) {
-            throw new CampoVacioException();
-        }
-        this.precio = precio;
-    }
-
-    public void setTamanio(String tamanio) throws CampoVacioException {
-        if (tamanio == null || tamanio.length() == 0) {
-            throw new CampoVacioException();
-        }
-        this.tamanio = tamanio;
-    }
-
-    public void setEmpresaDesarrolladora(String empresaDesarrolladora) throws CampoVacioException {
+    public void setEmpresaDesarrolladora(String empresaDesarrolladora) throws CamposvaciosException {
         if (empresaDesarrolladora == null || empresaDesarrolladora.length() == 0) {
-            throw new CampoVacioException();
+            throw new CamposvaciosException();
         }
         this.empresaDesarrolladora = empresaDesarrolladora;
     }
-
-    public void setFechadeDeLanzamiento(LocalDate fechadeDeLanzamiento) throws CampoVacioException {
-        if (fechadeDeLanzamiento == null) {
-            throw new CampoVacioException();
+    public void setFechaDeLanzamiento(LocalDate fechaDeLanzamiento) throws CamposvaciosException {
+        if (fechaDeLanzamiento == null) {
+            throw new CamposvaciosException();
         }
-        this.fechadeDeLanzamiento = fechadeDeLanzamiento;
+        this.fechaDeLanzamiento = fechaDeLanzamiento;
     }
-
-    public void setID_juego(String iD_juego) {
-        ID_juego = iD_juego;
+    public void setPrecio(double precio) throws PrecioJuegoException {
+        if (precio < 0) {
+            throw new PrecioJuegoException();
+        }
+        this.precio = precio;
     }
 
 
     @Override
     public String toString() {
-        return "Juego [ID_juego=" + ID_juego + ", tituloJuego=" + tituloJuego + ", genero=" + genero + ", modosDeJuego="
-                + modosDeJuego + ", compatibilidad=" + compatibilidad + ", precio=" + precio + ", tamanio=" + tamanio
-                + ", empresaDesarrolladora=" + empresaDesarrolladora + ", fechadeDeLanzamiento=" + fechadeDeLanzamiento
-                + "]";
+        return "Juego [idJuego=" + idJuego + ", nombre=" + nombre + ", genero=" + genero + ", empresaDesarrolladora="
+                + empresaDesarrolladora + ", fechaDeLanzamiento=" + fechaDeLanzamiento + ", precio=" + precio + "]";
     }
-
     
-
-
-    
-
-
-    
-   
-    
-    
-
-
 }
+
 
 
